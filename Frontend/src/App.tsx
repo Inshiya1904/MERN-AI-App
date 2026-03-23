@@ -4,55 +4,59 @@ import type { Node, Edge } from "reactflow";
 import "reactflow/dist/style.css";
 import axios from "axios";
 
+const API_BASE_URL = "http://localhost:3000"; // updated
+
 const App: React.FC = () => {
   const [input, setInput] = useState<string>("");
   const [output, setOutput] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  // 🔥 API call
+  // API call
   const runFlow = async () => {
     if (!input) return;
 
     try {
       setLoading(true);
 
-      const res = await axios.post("https://mern-ai-app-backend.onrender.com/api/ask-ai", {
+      const res = await axios.post(`${API_BASE_URL}/api/ask-ai`, {
         prompt: input,
       });
 
       setOutput(res.data.result);
     } catch (error) {
+      console.error(error);
       setOutput("Error fetching response");
     } finally {
       setLoading(false);
     }
   };
 
-  // 🔥 Save
+  // Save
   const saveData = async () => {
     if (!input || !output) return;
 
     try {
-      await axios.post("https://mern-ai-app-backend.onrender.com/api/save", {
+      await axios.post(`${API_BASE_URL}/api/save`, {
         prompt: input,
         response: output,
       });
 
-      alert("Saved ✅");
+      alert("Saved Response");
       setInput("");
       setOutput("");
     } catch (error) {
-      alert("Error saving ❌");
+      console.error(error);
+      alert("Error saving");
     }
   };
 
-  // 🔥 Clear
+  //Clear
   const clearData = () => {
     setInput("");
     setOutput("");
   };
 
-  // 🔥 Nodes
+  // Nodes
   const nodes: Node[] = [
     {
       id: "1",
@@ -89,7 +93,7 @@ const App: React.FC = () => {
     },
   ];
 
-  // 🔥 Edges
+  // Edges
   const edges: Edge[] = [
     {
       id: "e1-2",
@@ -102,12 +106,12 @@ const App: React.FC = () => {
   return (
     <div className="h-screen bg-gray-100 flex flex-col">
       
-      {/* 🔥 Header */}
+      {/* Header */}
       <h1 className="text-xl font-bold px-4 pt-3">
         AI Flow Dashboard
       </h1>
 
-      {/* 🔥 Top Controls */}
+      {/* Controls */}
       <div className="p-4 flex gap-3">
         <button
           onClick={runFlow}
@@ -146,7 +150,7 @@ const App: React.FC = () => {
         </button>
       </div>
 
-      {/* 🔥 React Flow */}
+      {/* React Flow */}
       <div className="flex-1">
         <ReactFlow nodes={nodes} edges={edges} fitView>
           <Background />

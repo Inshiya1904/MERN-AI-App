@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import axios from "axios";
 import AI from "../models/aiModels.js";
 
-// 🔥 Ask AI
+// Ask AI
 export const askAI = async (req: Request, res: Response) => {
   try {
     const { prompt } = req.body;
 
-    // ✅ Validation
+    // Validation
     if (!prompt || typeof prompt !== "string") {
       return res.status(400).json({ error: "Prompt is required" });
     }
@@ -58,12 +58,12 @@ If the question is about real-time events (news, war, updates), clearly say you 
   }
 };
 
-// 🔥 Save Data
+// Save Data
 export const saveData = async (req: Request, res: Response) => {
   try {
     const { prompt, response } = req.body;
 
-    // ✅ Validation
+    // Validation
     if (!prompt || !response) {
       return res.status(400).json({ error: "Missing data" });
     }
