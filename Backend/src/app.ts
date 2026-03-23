@@ -12,7 +12,7 @@ app.use(express.json());
 app.use("/api", aiRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Mentora Backend Running");
+  res.send("Mern-AI-App Backend Running");
 });
 
 export default app;
