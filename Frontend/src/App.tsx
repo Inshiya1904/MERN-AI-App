@@ -16,7 +16,7 @@ const App: React.FC = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post("http://localhost:3000/api/ask-ai", {
+      const res = await axios.post("https://mern-ai-app-backend.onrender.com/api/ask-ai", {
         prompt: input,
       });
 
@@ -33,7 +33,7 @@ const App: React.FC = () => {
     if (!input || !output) return;
 
     try {
-      await axios.post("http://localhost:3000/api/save", {
+      await axios.post("https://mern-ai-app-backend.onrender.com/api/save", {
         prompt: input,
         response: output,
       });
