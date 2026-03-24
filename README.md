@@ -81,7 +81,7 @@ npm run dev
 ## Notes
 
 - Free hosting (Render) may cause **cold start delay**
--I initially tried to use the free models mentioned in the assignment like Gemini Flash Lite and Mistral, but they were not available through the OpenRouter API at the time and were returning errors.
+- I initially tried to use the free models mentioned in the assignment like Gemini Flash Lite and Mistral, but they were not available through the OpenRouter API at the time and were returning errors.
 So to ensure my application works correctly end-to-end, I switched to a stable model (GPT-3.5).
 - AI responses are not real-time for live events (e.g. news)
 ---
