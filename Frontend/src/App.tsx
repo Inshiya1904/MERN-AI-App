@@ -4,7 +4,7 @@ import type { Node, Edge } from "reactflow";
 import "reactflow/dist/style.css";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3000"; // updated
+const API_BASE_URL = "https://mern-ai-app-backend.onrender.com"; 
 
 const App: React.FC = () => {
   const [input, setInput] = useState<string>("");
